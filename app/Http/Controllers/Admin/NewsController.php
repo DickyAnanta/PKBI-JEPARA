@@ -10,6 +10,33 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
+    public function index()
+    {
+        // Untuk halaman utama berita
+        $beritaKlinik = News::where('kategori', 'Klinik')->latest()->get();
+        $beritaKartini = News::where('kategori', 'Kartini')->latest()->get();
+
+        return view('news.index', compact('beritaKlinik', 'beritaKartini'));
+    }
+
+    public function show($id)
+    {
+        // Untuk halaman DETAIL saat salah satu berita diklik
+        $artikel = News::findOrFail($id);
+
+        // Ambil berita lain dengan kategori yang sama (untuk slider di bawah artikel)
+        $rekomendasi = News::where('kategori', $artikel->kategori)
+            ->where('id', '!=', $id)
+            ->latest()
+            ->get();
+
+        return view('news.show', [
+            'artikel' => $artikel,
+            'beritaTerkait' => $rekomendasi,
+            'titleSlider' => 'Detail Berita ' . $artikel->kategori
+        ]);
+    }
+
     public function klinik()
     {
         $beritas = News::where('kategori', 'klinik')->latest()->get();
@@ -39,7 +66,7 @@ class NewsController extends Controller
             $berita = new News();
             $berita->judul      = $request->judul;
             $berita->tagline    = $request->tagline;
-            $berita->kategori   = $request->type;
+            $berita->kategori   = $request->kategori;
             $berita->deskripsi  = $request->deskripsi;
             $berita->tanggal    = $request->tanggal;
 
@@ -57,7 +84,7 @@ class NewsController extends Controller
 
             $berita->save();
 
-            return redirect()->route('berita.' . $request->type)->with('success', 'Berita berhasil diupload!');
+            return redirect()->route('admin.berita.' . $request->kategori)->with('success', 'Berita berhasil diupload!');
         } catch (\Exception $e) {
             // Jika muncul "Unknown column 'gambar'", berarti migration belum sukses
             dd($e->getMessage());
@@ -92,7 +119,7 @@ class NewsController extends Controller
 
             $berita->save();
 
-            return redirect()->route('berita.' . $berita->kategori)->with('success', 'Berita berhasil diperbarui!');
+            return redirect()->route('admin.berita.' . $berita->kategori)->with('success', 'Berita berhasil diperbarui!');
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal update: ' . $e->getMessage());
         }

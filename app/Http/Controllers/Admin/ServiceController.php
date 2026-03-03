@@ -15,6 +15,12 @@ class ServiceController extends Controller
         return view('admin.service.index', compact('layanans'));
     }
 
+    public function indexPublik()
+    {
+        $layanans = Service::orderBy('created_at', 'asc')->get();
+        return view('layanan', compact('layanans'));
+    }
+    
     public function create()
     {
         return view('admin.service.create');

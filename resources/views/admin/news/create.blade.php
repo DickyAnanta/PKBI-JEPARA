@@ -1,8 +1,12 @@
 <x-app-layout>
     {{-- LOGIKA HYBRID --}}
     @php
+    // Pastikan variabel $type selalu ada (default ke KLINIK jika kosong)
+    $type = $type ?? 'klinik';
     $isEdit = isset($berita) && $berita->id;
-    $action = $isEdit ? route('berita.update', $berita->id) : route('berita.store');
+
+    // Perbaikan Route: Menambahkan prefix 'admin.' agar sesuai dengan web.php
+    $action = $isEdit ? route('admin.berita.update', $berita->id) : route('admin.berita.store');
     @endphp
 
     <div class="px-8 py-10 min-h-screen bg-gray-50/50 flex justify-center">
@@ -18,7 +22,8 @@
                         Sistem Manajemen • Berita {{ $type }}
                     </p>
                 </div>
-                <a href="{{ route('berita.' . $type) }}" class="w-12 h-12 bg-white border-4 border-[#00479b] rounded-2xl flex items-center justify-center text-[#00479b] hover:bg-red-500 hover:text-white transition-all shadow-lg">
+                {{-- Perbaikan Route: Kembali ke halaman list yang benar --}}
+                <a href="{{ route('admin.berita.' . strtolower($type)) }}" class="w-12 h-12 bg-white border-4 border-[#00479b] rounded-2xl flex items-center justify-center text-[#00479b] hover:bg-red-500 hover:text-white transition-all shadow-lg">
                     <i class="fas fa-times"></i>
                 </a>
             </div>
@@ -31,7 +36,8 @@
                     @method('PUT')
                     @endif
 
-                    <input type="hidden" name="type" value="{{ $type }}">
+                    {{-- Nama input disesuaikan dengan database: 'kategori' --}}
+                    <input type="hidden" name="kategori" value="{{ $type }}">
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 
@@ -51,8 +57,8 @@
 
                             <div class="space-y-3">
                                 <label class="text-[11px] font-black uppercase italic text-[#00479b] ml-4 tracking-widest">Kategori</label>
-                                <input type="text" value="{{ strtoupper($type) }}" readonly
-                                    class="w-full bg-blue-50 border-4 border-blue-100 rounded-[25px] p-5 text-sm font-black text-blue-400 cursor-not-allowed italic uppercase">
+                                <input type="text" value="{{ strtolower($type) }}" readonly
+                                    name="kategori" class="w-full bg-blue-50 border-4 border-blue-100 rounded-[25px] p-5 text-sm font-black text-blue-400 cursor-not-allowed italic">
                             </div>
 
                             <div class="space-y-3">
@@ -62,7 +68,7 @@
                             </div>
                         </div>
 
-                        {{-- KOLOM KANAN (HANYA GAMBAR) --}}
+                        {{-- KOLOM KANAN (GAMBAR) --}}
                         <div class="space-y-8 flex flex-col">
                             <div class="space-y-3 flex-grow">
                                 <label class="text-[11px] font-black uppercase italic text-[#00479b] ml-4 tracking-widest">
@@ -71,14 +77,14 @@
                                 <div class="relative h-[250px] md:h-full min-h-[250px] group border-4 border-dashed border-gray-200 rounded-[40px] overflow-hidden bg-gray-50 transition-all hover:border-[#00479b]">
                                     <input type="file" name="gambar" id="imageInput" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-30">
                                     <div class="absolute inset-0 w-full h-full flex items-center justify-center">
-                                        <div id="placeholder" class="text-center {{ $isEdit && $berita->gambar ? 'hidden' : '' }}">
+                                        <div id="placeholder" class="text-center {{ $isEdit && isset($berita->gambar) ? 'hidden' : '' }}">
                                             <i class="fas fa-image text-4xl text-gray-300 mb-3"></i>
                                             <p class="text-[9px] font-black uppercase italic text-gray-400">Pilih gambar thumbnail berita</p>
                                         </div>
                                         <img id="imagePreview"
-                                            src="{{ $isEdit && $berita->gambar ? asset('uploads/news/' . $berita->gambar) : '#' }}"
-                                            class="absolute inset-0 w-full h-full object-cover {{ $isEdit && $berita->gambar ? 'brightness-50' : 'hidden' }} transition-all duration-300 group-hover:brightness-[0.3]">
-                                        <div id="editOverlay" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none {{ $isEdit && $berita->gambar ? '' : 'hidden' }} z-10">
+                                            src="{{ $isEdit && isset($berita->gambar) ? asset('uploads/news/' . $berita->gambar) : '#' }}"
+                                            class="absolute inset-0 w-full h-full object-cover {{ $isEdit && isset($berita->gambar) ? 'brightness-50' : 'hidden' }} transition-all duration-300 group-hover:brightness-[0.3]">
+                                        <div id="editOverlay" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none {{ $isEdit && isset($berita->gambar) ? '' : 'hidden' }} z-10">
                                             <div class="w-14 h-14 bg-[#00479b] rounded-2xl flex items-center justify-center shadow-xl border-4 border-white mb-2">
                                                 <i class="fas fa-pencil-alt text-white"></i>
                                             </div>
@@ -89,14 +95,15 @@
                             </div>
                         </div>
 
-                        {{-- DESKRIPSI (SEKARANG DI ATAS TOMBOL) --}}
+                        {{-- ISI BERITA --}}
                         <div class="md:col-span-2 space-y-3">
                             <label class="text-[11px] font-black uppercase italic text-[#00479b] ml-4 tracking-widest">Isi Berita / Deskripsi Lengkap</label>
+                            {{-- Gunakan 'deskripsi' sesuai Old value anda --}}
                             <textarea name="deskripsi" rows="8" placeholder="TULIS ISI BERITA DI SINI..." required
                                 class="w-full bg-gray-50 border-4 border-gray-100 rounded-[40px] p-8 text-sm font-bold text-gray-600 focus:border-[#00479b] transition-all">{{ old('deskripsi', $berita->deskripsi ?? '') }}</textarea>
                         </div>
 
-                        {{-- TOMBOL SIMPAN (SEKARANG DI PALING BAWAH) --}}
+                        {{-- TOMBOL SIMPAN --}}
                         <div class="md:col-span-2">
                             <button type="submit"
                                 class="w-full bg-[#00479b] text-white font-black italic uppercase py-8 rounded-[30px] shadow-xl hover:bg-blue-800 transition-all tracking-[0.4em] text-sm flex items-center justify-center gap-3">

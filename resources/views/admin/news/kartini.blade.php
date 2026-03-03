@@ -3,7 +3,8 @@
         <x-page-header title="Berita Kartini" />
 
         <div class="flex justify-end mb-8">
-            <a href="{{ route('berita.create', ['type' => $type]) }}" class="bg-[#8db8f9] text-white px-10 py-2.5 rounded-2xl font-black shadow-lg hover:bg-[#00479b] transition-all uppercase tracking-widest text-sm italic border-4 border-white">
+            {{-- REVISI: Menggunakan admin.berita.create dan type KARTINI --}}
+            <a href="{{ route('admin.berita.create', ['type' => 'KARTINI']) }}" class="bg-[#8db8f9] text-white px-10 py-2.5 rounded-2xl font-black shadow-lg hover:bg-[#00479b] transition-all uppercase tracking-widest text-sm italic border-4 border-white">
                 + TAMBAH
             </a>
         </div>
@@ -25,16 +26,21 @@
                         {{ $item->judul }}
                     </h3>
                 </div>
+
+                {{-- Path Gambar --}}
                 <img src="{{ asset('uploads/news/' . $item->gambar) }}"
                     class="absolute inset-0 w-full h-full object-cover opacity-50"
                     alt="{{ $item->judul }}">
 
                 {{-- Overlay Aksi --}}
                 <div class="absolute inset-0 bg-[#00479b]/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    <a href="{{ route('berita.edit', $item->id) }}" class="w-12 h-12 bg-yellow-400 text-white rounded-2xl flex items-center justify-center shadow-xl hover:scale-110 transition">
+                    {{-- REVISI: Menggunakan admin.berita.edit --}}
+                    <a href="{{ route('admin.berita.edit', $item->id) }}" class="w-12 h-12 bg-yellow-400 text-white rounded-2xl flex items-center justify-center shadow-xl hover:scale-110 transition">
                         <i class="fas fa-edit text-lg"></i>
                     </a>
-                    <form action="{{ route('berita.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Hapus berita ini?')">
+
+                    {{-- REVISI: Menggunakan admin.berita.destroy --}}
+                    <form action="{{ route('admin.berita.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Hapus berita ini?')">
                         @csrf @method('DELETE')
                         <button type="submit" class="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center shadow-xl hover:scale-110 transition">
                             <i class="fas fa-trash text-lg"></i>

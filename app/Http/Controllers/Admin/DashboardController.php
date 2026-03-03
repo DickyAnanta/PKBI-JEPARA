@@ -24,6 +24,7 @@ class DashboardController extends Controller
 
     public function updateStats(Request $request)
     {
+        // dd($request->all());
         // Validasi data
         $request->validate([
             'pasien' => 'required|numeric',
@@ -33,13 +34,15 @@ class DashboardController extends Controller
         ]);
 
         // Opsi A: Jika menggunakan tabel tunggal 'Statistics'
-        $stats = Statistic::first(); // Mengambil baris pertama data stats
-        $stats->update([
-            'pasien' => $request->pasien,
-            'dokter' => $request->dokter,
-            'relawan' => $request->relawan,
-            'mitra' => $request->mitra,
-        ]);
+        Statistic::updateOrCreate(
+            ['id' => 1], // Kondisi pencarian
+            [
+                'pasien'  => $request->pasien,
+                'dokter'  => $request->dokter,
+                'relawan' => $request->relawan,
+                'mitra'   => $request->mitra,
+            ]
+        );
 
         return back()->with('success', 'Statistik berhasil diperbarui!');
     }
