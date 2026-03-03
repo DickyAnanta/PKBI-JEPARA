@@ -1,15 +1,12 @@
 <x-guest-layout>
-    {{-- Container Background tetap Full Screen --}}
     <div class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat p-4 sm:p-6"
         style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('images/Bangunan.png') }}');">
 
-        {{-- Parent Card: Default BG Biru (untuk mobile), Desktop tetap bisa beda warna --}}
         <div class="w-full max-w-4xl flex flex-col md:flex-row bg-[#00479b] rounded-[30px] md:rounded-[40px] shadow-2xl overflow-hidden min-h-[450px] md:min-h-[550px]">
 
             {{-- Sisi Kiri (Form) - Selalu Biru --}}
             <div class="w-full md:w-1/2 p-8 sm:p-12 md:p-14 flex flex-col justify-center bg-[#00479b]">
 
-                {{-- Logo Mobile: Muncul saat responsive --}}
                 <div class="md:hidden flex justify-center mb-6">
                     <img src="{{ asset('images/bg-klinik.png') }}" alt="Logo PKBI" class="w-20 h-auto brightness-0 invert">
                 </div>
@@ -44,7 +41,6 @@
             </div>
 
             {{-- Sisi Kanan (Branding) --}}
-            {{-- md:bg-white membuat sisi ini jadi putih hanya di desktop. Di mobile div ini tersembunyi (hidden) --}}
             <div class="hidden md:flex w-1/2 p-10 flex flex-col items-center justify-center bg-white text-center border-l border-gray-100">
 
                 <img src="{{ asset('images/bg-klinik.png') }}" alt="PKBI Logo" class="w-48 mb-8 object-contain hover:scale-105 transition-transform duration-300">

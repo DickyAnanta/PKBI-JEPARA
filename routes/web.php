@@ -17,13 +17,13 @@ use App\Http\Controllers\AboutController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Halaman Layanan Publik (Bento Grid)
+// Halaman Layanan Publik 
 Route::get('/layanan', [ServiceController::class, 'indexPublik'])->name('layanan.publik');
 
-// Halaman Berita Utama (Daftar Berita)
+// Halaman Berita Utama
 Route::get('/berita', [NewsController::class, 'index'])->name('berita.index');
 
-// Halaman Baca Berita (Detail Berita)
+// Halaman Baca Berita 
 Route::get('/berita/{id}', [NewsController::class, 'show'])->name('berita.show');
 
 // Halaman Youth-Center
@@ -44,7 +44,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::put('/stats/update', [DashboardController::class, 'updateStats'])->name('stats.update');
 
-    // 2. Menu Layanan CRUD (Resource: index, create, store, edit, update, destroy)
+    // 2. Menu Layanan CRUD 
     Route::resource('layanan', ServiceController::class);
 
     // 3. Menu Kelola Berita

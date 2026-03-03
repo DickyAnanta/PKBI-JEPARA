@@ -3,7 +3,6 @@
         <x-page-header title="Berita Kartini" />
 
         <div class="flex justify-end mb-8">
-            {{-- REVISI: Menggunakan admin.berita.create dan type KARTINI --}}
             <a href="{{ route('admin.berita.create', ['type' => 'KARTINI']) }}" class="bg-[#8db8f9] text-white px-10 py-2.5 rounded-2xl font-black shadow-lg hover:bg-[#00479b] transition-all uppercase tracking-widest text-sm italic border-4 border-white">
                 + TAMBAH
             </a>
@@ -34,7 +33,6 @@
 
                 {{-- Overlay Aksi --}}
                 <div class="absolute inset-0 bg-[#00479b]/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    {{-- REVISI: Menggunakan admin.berita.edit --}}
                     <a href="{{ route('admin.berita.edit', $item->id) }}" class="w-12 h-12 bg-yellow-400 text-white rounded-2xl flex items-center justify-center shadow-xl hover:scale-110 transition">
                         <i class="fas fa-edit text-lg"></i>
                     </a>

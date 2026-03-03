@@ -8,7 +8,6 @@
             </div>
             <div class="flex items-center gap-2">
                 <i class="fas fa-envelope"></i>
-                {{-- EMAIL SEKARANG MUNCUL DI SEMUA LAYAR --}}
                 <span class="inline-block tracking-tighter sm:tracking-normal">pkbijepara12@gmail.com</span>
             </div>
         </div>

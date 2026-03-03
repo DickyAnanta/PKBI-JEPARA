@@ -23,7 +23,6 @@
 
         {{-- Body Pop-up --}}
         <div class="p-8 text-center">
-            {{-- Kata-kata Persuasif --}}
             <div class="mb-8">
                 <h4 class="text-blueText font-extrabold text-lg mb-2">Punya Pertanyaan Medis?</h4>
                 <p class="text-gray-500 text-sm leading-relaxed">

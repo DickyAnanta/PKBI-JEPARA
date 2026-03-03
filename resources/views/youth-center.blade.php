@@ -95,7 +95,7 @@
             </div>
         </section>
 
-        {{-- --- SECTION 2: JARINGAN (MAP PIN) --- --}}
+        {{-- --- SECTION 2: JARINGAN  --- --}}
         <section class="py-16 md:py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="flex justify-center mb-6 text-blue-800 opacity-20" data-aos="fade">
@@ -139,7 +139,7 @@
             </div>
         </section>
 
-        {{-- --- SECTION 3: LAYANAN (3 BOX) --- --}}
+        {{-- --- SECTION 3: LAYANAN --- --}}
         <section class="py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16" data-aos="fade-up">
@@ -190,7 +190,7 @@
             </div>
         </section>
 
-        {{-- --- MODAL (Update pada bagian Button) --- --}}
+        {{-- --- MODAL --- --}}
         <div x-show="isPopupOpen" x-transition.opacity.scale.origin.center class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" style="display: none;">
             <div @click.away="isPopupOpen = false" class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-sm overflow-hidden relative">
                 <button @click="isPopupOpen = false" class="absolute top-4 right-4 bg-white/20 p-1.5 rounded-full hover:bg-white/40 transition-colors">
@@ -220,7 +220,7 @@
                         Punya pertanyaan? Yuk, **Hubungi Kami** melalui Direct Message (DM) Instagram untuk respon cepat.
                     </p>
 
-                    {{-- Button yang diperbarui tulisannya --}}
+                    {{-- Button --}}
                     <a href="https://ig.me/m/youthcenter.kartini" target="_blank"
                         class="group w-full bg-insta-gradient py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95"
                         style="background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045) !important;">

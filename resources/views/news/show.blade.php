@@ -43,7 +43,6 @@
             <div class="w-full h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent mb-20"></div>
 
             {{-- SLIDER REKOMENDASI (Style Gambar 2) --}}
-            {{-- Kita memanggil komponen slider dengan data $beritaTerkait dari Controller --}}
             <div class="mt-10">
                 @include('components.berita-slider', [
                 'title' => $titleSlider ?? 'Berita Terkait Lainnya',

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service; // Pastikan nama Model Anda Service
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -20,7 +20,7 @@ class ServiceController extends Controller
         $layanans = Service::orderBy('created_at', 'asc')->get();
         return view('layanan', compact('layanans'));
     }
-    
+
     public function create()
     {
         return view('admin.service.create');
@@ -37,10 +37,8 @@ class ServiceController extends Controller
 
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
-                // Menggunakan Str::slug agar nama file rapi tanpa spasi
                 $nama_file = time() . "_" . Str::slug($request->nama_layanan) . "." . $file->getClientOriginalExtension();
 
-                // Pindahkan ke folder public/uploads/layanan
                 $file->move(public_path('uploads/layanan'), $nama_file);
 
                 // Simpan nama file ke database

@@ -1,6 +1,5 @@
 <x-app-layout>
     <div class="px-8 py-6 min-h-screen bg-gray-50/50">
-        {{-- Header dengan Gaya yang Sama --}}
         <x-page-header title="Layanan Unit" />
 
         {{-- Tombol Tambah --}}

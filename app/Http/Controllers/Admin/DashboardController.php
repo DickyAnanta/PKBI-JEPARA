@@ -7,14 +7,13 @@ use App\Models\Statistic;
 use App\Models\News;
 use App\Models\Service;
 
-use Illuminate\Http\Request; // WAJIB ADA: Ini untuk memperbaiki error 'Undefined type Request'
+use Illuminate\Http\Request; 
 
 class DashboardController extends Controller
 {
     public function index()
     {
         $stats = Statistic::first();
-        // Pastikan nama variabel ini sesuai dengan yang ada di @forelse
         $latestNewsKlinik = News::where('kategori', 'klinik')->latest()->take(2)->get();
         $latestNewsKartini = News::where('kategori', 'kartini')->latest()->take(2)->get();
         $totalServices = Service::count();
@@ -25,7 +24,6 @@ class DashboardController extends Controller
     public function updateStats(Request $request)
     {
         // dd($request->all());
-        // Validasi data
         $request->validate([
             'pasien' => 'required|numeric',
             'dokter' => 'required|numeric',
@@ -33,7 +31,7 @@ class DashboardController extends Controller
             'mitra' => 'required|numeric',
         ]);
 
-        // Opsi A: Jika menggunakan tabel tunggal 'Statistics'
+
         Statistic::updateOrCreate(
             ['id' => 1], // Kondisi pencarian
             [

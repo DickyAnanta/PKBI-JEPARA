@@ -50,7 +50,6 @@
 
 <body class="min-h-screen bg-white font-sans text-blueText overflow-x-hidden" x-data="{ isPopupOpen: false, mobileMenu: false }">
 
-    {{-- Tampilkan Navigation hanya jika BUKAN halaman login/register --}}
     @if (!request()->routeIs('login') && !request()->routeIs('register'))
     <x-navigation />
     @endif
@@ -60,7 +59,6 @@
         {{ $slot }}
     </main>
 
-    {{-- Tampilkan Footer dan Modal hanya jika BUKAN halaman login/register --}}
     @if (!request()->routeIs('login') && !request()->routeIs('register'))
     <x-footer />
     <x-modal-konsultasi />

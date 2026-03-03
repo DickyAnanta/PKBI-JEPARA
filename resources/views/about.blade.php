@@ -57,7 +57,7 @@
                             </svg>
                             <div>
                                 <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Berdiri Sejak</p>
-                                <p class="text-2xl font-black italic text-[#102a6e]">1974</p>
+                                <p class="text-2xl font-black italic text-[#102a6e]">1957</p>
                             </div>
                         </div>
                     </div>

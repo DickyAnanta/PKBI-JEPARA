@@ -14,7 +14,6 @@ class YouthCenterController extends Controller
      */
     public function index(): View
     {
-        // Data tambahan jika ingin dikirim ke view secara dinamis
         $data = [
             'title' => 'Youth Center - PKBI',
             'igUsername' => 'youthcenter.kartini',

@@ -1,11 +1,9 @@
 <x-app-layout>
     {{-- LOGIKA HYBRID --}}
     @php
-    // Pastikan variabel $type selalu ada (default ke KLINIK jika kosong)
     $type = $type ?? 'klinik';
     $isEdit = isset($berita) && $berita->id;
 
-    // Perbaikan Route: Menambahkan prefix 'admin.' agar sesuai dengan web.php
     $action = $isEdit ? route('admin.berita.update', $berita->id) : route('admin.berita.store');
     @endphp
 
@@ -36,7 +34,6 @@
                     @method('PUT')
                     @endif
 
-                    {{-- Nama input disesuaikan dengan database: 'kategori' --}}
                     <input type="hidden" name="kategori" value="{{ $type }}">
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">

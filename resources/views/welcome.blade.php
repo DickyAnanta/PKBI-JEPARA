@@ -10,15 +10,12 @@
 
         {{-- Konten Utama Hero --}}
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {{-- flex-col dan items-center memastikan semua anak elemen berada di tengah --}}
             <div class="flex flex-col items-center text-center pt-14">
 
-                {{-- Judul: text-center dan mx-auto --}}
                 <h2 class="text-3xl md:text-[40px] font-extrabold leading-tight mb-8 uppercase text-blueText text-center max-w-4xl mx-auto">
                     Klinik Pratama Wahana Sejahtera <br /> PKBI Jepara
                 </h2>
 
-                {{-- Paragraf: mx-auto agar posisi center-nya absolut --}}
                 <p class="text-[14px] md:text-[15px] font-medium text-gray-800 max-w-3xl mb-10 leading-relaxed text-center mx-auto">
                     Selamat datang di layanan Klinik Pratama Wahana Sejahtera PKBI Jepara.
                     <br class="hidden md:block" />
@@ -30,7 +27,6 @@
                     KONSULTASI
                 </button>
 
-                {{-- Grid Statistik: Pastikan grid-nya juga simetris --}}
                 <div class="pt-24 pb-12 mb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto items-center justify-center">
                     @php
                     $items = [
